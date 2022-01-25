@@ -116,6 +116,33 @@ class outStream:
 
 cout = outStream()
 
-cout << "hey there" << " " << "this comes from python";
+cout << "hey there" << " " << "this comes from python" << "\n";
 
 # dunders affect not only on classes but whole phython objects
+
+# class variable and instance variable
+
+class Dog:
+	breed = 'street' # class variable
+
+	# skills = []
+	def __init__(self, name):
+		self.name = name
+		self.skills = []
+
+	def setSkill(self, skill):
+		self.skills.append(skill)
+
+
+d2 = Dog('jakson')
+d2.breed = 'labera' # changing for the instance d2
+print(d2.breed)
+print(d2.name)
+d2.setSkill('barks')
+d2.setSkill('catch')
+print(d2.skills) # changed for the class variable when self is not given
+# and self cannot be used because it is like an instance variable
+d = Dog('donald')
+print(d.breed)
+print(d.name)
+print(d.skills)
