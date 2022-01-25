@@ -25,5 +25,97 @@ print(hex(id(a))) # the actual adress of the instance
 b = A()
 print(b);
 print(id(b));
-print(hex(id(b))); 
+print(hex(id(b)));
 
+
+# For any class
+class Greetings:
+	def say_hi(self):
+		print("hey there")
+
+hey = Greetings()
+hey.say_hi(); # by default self is passing
+
+'''
+	self works to determine the particular instance
+	and initialising for that instance only
+'''
+
+# python specific
+class Specific:
+	# attribute can be defined while processing
+	'''
+		init is not a constructor
+		it is somewhat like side effect of the class
+	'''
+	def __init__(self, name):
+		self.name = name
+	
+	def greet(self):
+		print('hey there', self.name)
+
+
+sp = Specific('kushagra')
+sp.greet()
+
+# this is somewhat like static class
+Specific('kush').greet()
+
+'''
+	init is dunders or magic
+	dunders => provides us some hooks or interface 
+	to implement the individual functionalities
+
+	lifecycle of object ->
+		1. Created
+		2. Process
+		3. Deleted
+	
+	python has created list for all the events
+	and for every event python has assigned dunders
+
+	every dunder starts with '__' and ends with '__'
+	-> __init__(self) => it is called whenever a object has creating event
+	-> __del__(self) => called when object is deleted
+	-> __add__(self, other) => add the objects of same class
+	-> __str__(self) => turns the object to string [str(a) => a.__str__(self)]
+'''
+
+# implementing dunders
+class Car:
+	def __init__(self, model, mileage):
+		self.model = model
+		self.mileage = mileage
+
+	def __str__(self):
+		return "{} {}".format(self.model, self.mileage)
+
+	def __repr__(self):
+		return "{}".format(self.model)
+
+	def __eq__(self, other):
+		return self.mileage == other.mileage
+
+	def __add__(self, other):
+		return self.mileage + other.mileage
+
+toyota = Car('altis', 20)
+kia = Car('seltos', 30)
+
+print(kia + toyota)
+print(kia==toyota)
+print(repr(toyota))
+print(str(kia))
+
+# for c++ output --> cout << "string";
+
+class outStream:
+	def __lshift__(self, other):
+		print(other, end = '')
+		return self
+
+cout = outStream()
+
+cout << "hey there" << " " << "this comes from python";
+
+# dunders affect not only on classes but whole phython objects
