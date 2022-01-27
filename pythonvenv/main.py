@@ -146,3 +146,41 @@ d = Dog('donald')
 print(d.breed)
 print(d.name)
 print(d.skills)
+
+
+# inheritance in python
+
+# python only supports overriding 
+class SchoolMembers:
+	def __init__(self, name, age):
+		self.name = name
+		self.age = age
+		print(f"initialized SchoolMember : {self.name}, {self.age}")
+
+	def tell(self):
+		print(f"name: {self.name}, age: {self.age}")
+
+def Teacher(SchoolMembers):
+	def __init__(self, name, age, salary):
+		SchoolMembers.__init__(self, name, age)
+		self.salary = salary
+		print(f"initialized Teacher : {self.name}")
+
+	def tell(self):
+		SchoolMembers.tell(self)
+		print(f"salary: {self.salary}")
+
+def Student(SchoolMembers):
+	def __init__(self, name, age, marks):
+		SchoolMembers.__init__(self, name, age)
+		self.marks = marks
+		print(f"initialized Student : {self.name}")
+
+	def tell(self):
+		SchoolMembers.tell(self)
+		print(f"marks: {self.marks}")
+
+
+t1 = Teacher('rohit', 24, 3000)
+s1 = Student('rakesh', 16, 89)
+print(type(rohit))
